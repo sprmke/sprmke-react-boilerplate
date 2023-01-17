@@ -1,0 +1,37 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  all-cli-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14.16'
+      # - run: mv .env.example .env
+      - run: pnpm install
+      - run: pnpm build
+      - run: pnpm test:jest
+      - run: pnpm lint
+      - run: pnpm check-format
+      - run: pnpm check-types
+  # cypress-run:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: pnpm/action-setup@v2
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '14.16'
+  #     # - run: mv .env.example .env
+  #     - uses: cypress-io/github-action@v2
+  #       with:
+  #         build: pnpm build
+  #         start: pnpm serve
