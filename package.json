@@ -11,7 +11,7 @@
     "test:ui": "vitest --ui",
     "coverage": "vitest run --coverage",
     "prepare": "husky install",
-    "lint": "eslint . --ext .ts,.tsx,.js",
+    "lint": "pnpm eslint . --ext .ts,.tsx,.js",
     "format": "prettier --write --ignore-unknown .",
     "check-types": "tsc --project tsconfig.json --pretty --noEmit",
     "check-format": "prettier --list-different --ignore-unknown .",
